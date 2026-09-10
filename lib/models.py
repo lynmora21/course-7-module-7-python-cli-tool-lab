@@ -1,34 +1,41 @@
-# TODO: Define the Task class
-# Each task should store a title and a completed status (default False)
-# Add a complete() method that marks the task as completed and prints confirmation
-
 class Task:
+    """Represents a task belonging to a user."""
+
     def __init__(self, title):
-        # TODO: Assign the title
-        # TODO: Set completed to False
-        pass
+        self.title = title
+        self.completed = False
 
     def complete(self):
-        # TODO: Mark the task as complete
-        # TODO: Print a confirmation message
-        pass
+        """Mark the task as completed."""
+        if self.completed:
+            print(f"ℹ️ Task '{self.title}' is already completed.")
+        else:
+            self.completed = True
+            print(f"✅ Task '{self.title}' completed.")
 
-# TODO: Define the User class
-# Each user has a name and a list of tasks
-# Add methods to add tasks and search tasks by title
+    def __str__(self):
+        status = "✅" if self.completed else "⬜"
+        return f"{status} {self.title}"
+
 
 class User:
+    """Represents a user who can have multiple tasks."""
+
     def __init__(self, name):
-        # TODO: Store the user's name
-        # TODO: Initialize an empty list of tasks
-        pass
+        self.name = name
+        self.tasks = []
 
     def add_task(self, task):
-        # TODO: Add the task to the user's task list
-        # TODO: Print a message confirming the task was added
-        pass
+        """Add a task to the user's task list."""
+        self.tasks.append(task)
+        print(f"📌 Task '{task.title}' added to {self.name}.")
 
-    def get_task_by_title(self, title):
-        # TODO: Search for a task by its title in the user's task list
-        # TODO: Return the matching task or None
-        pass
+    def list_tasks(self):
+        """Display all tasks belonging to the user."""
+        if not self.tasks:
+            print(f"ℹ️ {self.name} has no tasks.")
+            return
+
+        print(f"\nTasks for {self.name}:")
+        for task in self.tasks:
+            print(f"  {task}")
